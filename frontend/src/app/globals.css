@@ -1,0 +1,540 @@
+@import 'tailwindcss';
+
+/* Your own private ChatGPT. Light only, clean and playful: warm stone paper, white cards,
+   a sky band with clouds, chunky outlined buttons, serif headlines. */
+:root {
+  --canvas: #f2f0eb;
+  --surface: #ffffff;
+  --surface-2: #e6e3da;
+  --ink: #17181c;
+  --ink-2: #3c3e46;
+  --muted: #6a6c74;
+  --line: #e1ddd2;
+  --line-strong: #cdc7b8;
+  --accent: #1366d6;
+  --accent-strong: #0b4fae;
+  --accent-wash: #e4effd;
+  --sky: #2f74cc;
+  --mint: #8be3ae;
+  --sun: #ffd667;
+  --fail: #c0362c;
+  --code-bg: #17181c;
+  --code-ink: #eef0f4;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-wash: var(--accent-wash);
+  --color-fail: var(--fail);
+  --color-accent-strong: var(--accent-strong);
+  --color-sky: var(--sky);
+  --color-mint: var(--mint);
+  --color-sun: var(--sun);
+  --font-display: var(--font-face-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-face-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-face-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--accent-wash);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Playful pieces. */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.75rem;
+  padding: 0 1.2rem;
+  border: 2px solid var(--ink);
+  border-radius: 0.85rem;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 650;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.btn-mint {
+  background: var(--mint);
+}
+
+.btn-white {
+  background: #ffffff;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: var(--surface);
+}
+
+.window {
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  border-radius: 1.2rem;
+  background: #ffffff;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* Offset stone tiles behind a block, like stacked paper. */
+.tiles {
+  position: relative;
+  isolation: isolate;
+}
+
+.tiles::before {
+  content: '';
+  position: absolute;
+  inset: 1.5rem -0.75rem -0.75rem 1.5rem;
+  z-index: -1;
+  border-radius: 1.1rem;
+  background: var(--surface-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+.code {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  font-family: var(--font-mono);
+}
+
+/* Chapter prose. */
+.prose-chapter {
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+.prose-chapter h2 {
+  margin: 2.5rem 0 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.prose-chapter p,
+.prose-chapter ul,
+.prose-chapter ol {
+  margin: 0.75rem 0;
+}
+
+.prose-chapter ul {
+  list-style: disc;
+  padding-left: 1.3rem;
+}
+
+.prose-chapter ol {
+  list-style: decimal;
+  padding-left: 1.3rem;
+}
+
+.prose-chapter a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-chapter strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.prose-chapter :not(pre) > code {
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--ink);
+}
+
+.prose-chapter pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: 2.75rem 1rem 1rem;
+  border-radius: 12px;
+  background: var(--code-bg);
+  color: var(--code-ink);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.prose-chapter .code-block {
+  position: relative;
+  margin: 1.25rem 0;
+}
+
+.prose-chapter .code-block > button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.prose-chapter table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+
+.prose-chapter th,
+.prose-chapter td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose-chapter th {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+@media (max-width: 480px) {
+  .prose-chapter pre {
+    font-size: 12px;
+  }
+}
+
+code,
+pre,
+.code {
+  font-variant-ligatures: none;
+  font-feature-settings:
+    'liga' 0,
+    'calt' 0;
+}
+
+/* Choice chips: system, drive, model size. */
+.chip {
+  cursor: pointer;
+  border: 2px solid var(--line-strong);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  padding: 0.35rem 0.8rem;
+  font-size: 14px;
+  transition:
+    border-color 0.12s ease,
+    background 0.12s ease;
+}
+
+.chip:hover {
+  border-color: var(--ink);
+}
+
+.chip.is-on {
+  border-color: var(--ink);
+  background: var(--mint);
+  font-weight: 600;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Inline code that copies itself. */
+.code-chip {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0.1rem;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  line-height: 1.5;
+  text-align: left;
+  vertical-align: baseline;
+  word-break: break-all;
+  transition: background 0.12s ease;
+}
+
+.code-chip:hover {
+  border-color: var(--ink);
+  background: var(--accent-wash);
+}
+
+.code-chip.is-copied {
+  border-color: #1d7a46;
+  background: #e6f8ee;
+}
+
+.code-chip-icon {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+/* Follow-along steps. */
+.step-card {
+  border: 2px solid var(--line-strong);
+  border-radius: 1.2rem;
+  background: var(--surface);
+  padding: 1.25rem;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+@media (min-width: 640px) {
+  .step-card {
+    padding: 1.5rem;
+  }
+}
+
+.step-card.is-next {
+  border-color: var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.step-card.is-done {
+  background: #f7fcf9;
+  border-color: #a9dfbf;
+}
+
+.step-number {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--accent-wash);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.is-next .step-number {
+  background: var(--sun);
+}
+
+.is-done .step-number {
+  background: var(--mint);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.step-label {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.badge {
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.done-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.45rem;
+  border: 2px solid var(--ink);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  padding: 0.35rem 0.7rem;
+  font-size: 13.5px;
+  font-weight: 650;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.1s ease;
+}
+
+.done-toggle:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.done-toggle:has(:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.done-toggle.is-on {
+  background: var(--mint);
+}
+
+.done-box {
+  display: grid;
+  place-items: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.nav-cta {
+  border: 2px solid var(--ink);
+  border-radius: 0.7rem;
+  background: var(--mint);
+  padding: 0.3rem 0.7rem;
+  font-weight: 650;
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Cloud or local: a packet travels along the wire. */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flow-node {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 5.5rem;
+  border: 2px solid var(--ink);
+  border-radius: 1rem;
+  background: var(--canvas);
+  padding: 0.75rem 0.6rem;
+  text-align: center;
+}
+
+.flow-wire {
+  position: relative;
+  flex: 1;
+  height: 0;
+  border-top: 2px dashed var(--ink);
+}
+
+.flow-dot {
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--sun);
+  animation: travel 1.6s ease-in-out infinite alternate;
+}
+
+.flow-wire.is-far .flow-dot {
+  background: #ff9b9b;
+  animation-duration: 2.4s;
+}
+
+@keyframes travel {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 12px);
+  }
+}
+
+/* Video slot. */
+.video-poster {
+  background:
+    radial-gradient(circle at 20% 25%, rgb(255 255 255 / 0.18) 0 4rem, transparent 4.1rem),
+    radial-gradient(circle at 85% 80%, rgb(139 227 174 / 0.35) 0 5rem, transparent 5.1rem),
+    var(--sky);
+}
+
+.play-button {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding-left: 0.3rem;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--ink);
+  font-size: 1.6rem;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.12s ease;
+}
+
+.group:hover .play-button {
+  transform: scale(1.06);
+}
+
+.play-button.is-waiting {
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-dot,
+  .play-button.is-waiting {
+    animation: none;
+  }
+
+  .flow-dot {
+    left: calc(50% - 6px);
+  }
+}
