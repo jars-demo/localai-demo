@@ -81,3 +81,31 @@ test('back to top returns to the top', async ({ page }) => {
   await button.click()
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
 })
+
+test('Dot, the logo companion, answers common questions', async ({ page }) => {
+  await page.goto('/follow-along')
+  await page.getByRole('button', { name: /Ask Dot/ }).click()
+  const panel = page.getByRole('dialog', { name: 'Ask Dot' })
+  await panel.getByRole('button', { name: 'Which drive should I pick?' }).click()
+  await expect(panel).toContainText('Any drive that is not C:')
+  await page.keyboard.press('Escape')
+  await expect(panel).toBeHidden()
+})
+
+test('share cards, sitemap and robots are in place', async ({ page, request }) => {
+  await page.goto('/')
+  await expect(page.locator('meta[property="og:image"]')).toHaveCount(1)
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+    'content',
+    'summary_large_image',
+  )
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    /localai\.jishanahmed\.in\/?$/,
+  )
+  await page.goto('/follow-along')
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/follow-along$/)
+  expect((await request.get('/sitemap.xml')).ok()).toBeTruthy()
+  expect((await request.get('/robots.txt')).ok()).toBeTruthy()
+  expect((await request.get('/opengraph-image.png')).ok()).toBeTruthy()
+})
