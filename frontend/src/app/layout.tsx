@@ -1,13 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { DM_Mono, Figtree, Instrument_Serif } from 'next/font/google'
 
-import { Shell, SITE_URL } from '@/components/Shell'
+import { Shell } from '@/components/Shell'
+import { AUTHOR, KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from '@/lib/seo'
 
 import './globals.css'
-
-const TITLE = 'Your own private ChatGPT'
-const DESCRIPTION =
-  'A no-code workshop: run a ChatGPT-style AI on your own laptop with Jan, keep its data off the system drive, chat with the internet off, and check what is private. Windows and macOS.'
 
 const sans = Figtree({
   variable: '--font-face-sans',
@@ -26,33 +23,40 @@ const mono = DM_Mono({
   weight: ['400', '500'],
 })
 
+const DEFAULT_TITLE = `${SITE_NAME}: ${SITE_TAGLINE}`
+
+// Site-wide defaults. Each page sets its own title, description and canonical URL.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: TITLE, template: `%s · ${TITLE}` },
-  description: DESCRIPTION,
-  keywords: [
-    'local AI',
-    'private AI',
-    'offline AI',
-    'Jan',
-    'LM Studio',
-    'Qwen3.5',
-    'GGUF',
-    'ChatGPT alternative',
-    'Windows',
-    'macOS',
-    'workshop',
-  ],
-  alternates: { canonical: '/' },
+  title: { default: DEFAULT_TITLE, template: `%s · ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: KEYWORDS,
+  authors: [{ name: AUTHOR.credit, url: AUTHOR.url }],
+  creator: AUTHOR.credit,
+  publisher: AUTHOR.credit,
+  category: 'technology',
   openGraph: {
     type: 'website',
-    url: SITE_URL,
-    siteName: TITLE,
-    title: TITLE,
-    description: DESCRIPTION,
+    url: '/',
+    siteName: SITE_NAME,
     locale: 'en_IN',
+    title: DEFAULT_TITLE,
+    description: SITE_DESCRIPTION,
   },
-  twitter: { card: 'summary', title: TITLE, description: DESCRIPTION },
+  twitter: { card: 'summary_large_image', title: DEFAULT_TITLE, description: SITE_DESCRIPTION },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  formatDetection: { telephone: false, email: false, address: false },
 }
 
 export const viewport: Viewport = { themeColor: '#f2f0eb' }

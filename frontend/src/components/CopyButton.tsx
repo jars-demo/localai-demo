@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 
-import { fillDrive, useSetup } from '@/lib/setup'
+import { fillDrive } from '@/lib/setup'
+import { useSetup } from '@/lib/store'
 
 export function CopyButton({ text }: { text: string }) {
   const [state, setState] = useState<'idle' | 'copied' | 'blocked'>('idle')

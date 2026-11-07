@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { createStore, dataPath, hasDataDrive, useSetup } from '@/lib/setup'
+import { dataPath, hasDataDrive } from '@/lib/setup'
+import { createStore, useSetup } from '@/lib/store'
 import { stepsFor, type Step } from '@/lib/steps'
 
 import { Icon, IconTile } from './Icons'

@@ -1,6 +1,7 @@
 'use client'
 
-import { fillDrive, useSetup } from '@/lib/setup'
+import { fillDrive } from '@/lib/setup'
+import { useSetup } from '@/lib/store'
 
 import { SetupPicker } from './SetupPicker'
 

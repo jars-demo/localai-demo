@@ -1,6 +1,7 @@
 'use client'
 
-import { DRIVE_LETTERS, setupStore, useSetup, type Setup } from '@/lib/setup'
+import { DRIVE_LETTERS, type Setup } from '@/lib/setup'
+import { setupStore, useSetup } from '@/lib/store'
 
 type Option = { label: string; active: boolean; pick: () => void }
 

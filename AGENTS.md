@@ -31,5 +31,5 @@ cd frontend && npm ci && npm run verify
 3. **No overclaiming.** Never write "100% private", "nothing leaves your computer" or "secure". Jan checks for updates by default and chats are plain-text files. Say so.
 4. **Claims need a source.** Requirements, sizes, settings labels and privacy behaviour come from Jan's docs, Jan's v0.8.8 source, LM Studio's docs or Hugging Face. If it cannot be verified, mark it UNVERIFIED in `docs/research/` and keep it out of the chapters.
 5. **Windows and macOS both.** Any step that differs gives both. Intel Macs cannot run local models in Jan; say it.
-6. **Credits.** Never put the co-creator's name, username or links anywhere public facing: the site, the chapters, the docs, or the video and its description. Where a credit is needed, write SAV.
+6. **Credits.** Public credit is **Jishanahmed AR Shaikh [JARS]** only (`frontend/src/lib/seo.ts`). Do not credit, name or link anyone else on the site, in the chapters, in the docs or in share images.
 7. **Writing style.** Plain English, short sentences, no em dashes. Conventional Commits, no AI attribution trailers.

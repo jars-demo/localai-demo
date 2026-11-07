@@ -1,9 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { pageMeta } from '@/lib/seo'
 import { CHAPTERS } from '@/lib/workshop'
 
-export const metadata: Metadata = { title: 'Workshop' }
+export const metadata: Metadata = pageMeta({
+  title: 'All chapters: local AI for beginners',
+  description:
+    'Ten short chapters on running AI on your own laptop: what local AI is, will my laptop run it, installing Jan on Windows and Mac, your first model, going offline, privacy, fixing problems, and Jan vs LM Studio.',
+  path: '/workshop',
+})
 
 export default function WorkshopPage() {
   const minutes = CHAPTERS.reduce((sum, chapter) => sum + chapter.minutes, 0)
