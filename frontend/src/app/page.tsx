@@ -1,12 +1,77 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { CloudOrLocal } from '@/components/CloudOrLocal'
+import { Faq } from '@/components/Faq'
 import { Icon, IconTile, type IconName, type Tone } from '@/components/Icons'
 import { LaptopPicker } from '@/components/LaptopPicker'
 import { ModelExplainer } from '@/components/ModelExplainer'
 import { REPO_URL } from '@/components/Shell'
+import { JsonLd } from '@/components/JsonLd'
+import { TiltCard } from '@/components/TiltCard'
 import { VideoSection } from '@/components/VideoSection'
+import {
+  absolute,
+  AUTHOR_LD,
+  pageMeta,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+} from '@/lib/seo'
 import { CHAPTERS } from '@/lib/workshop'
+
+export const metadata: Metadata = {
+  ...pageMeta({ title: `${SITE_NAME}: ${SITE_TAGLINE}`, description: SITE_DESCRIPTION, path: '/' }),
+  title: { absolute: `${SITE_NAME}: ${SITE_TAGLINE}` },
+}
+
+const SITE_LD = {
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      inLanguage: 'en-IN',
+      author: { '@id': `${SITE_URL}/#author` },
+      publisher: { '@id': `${SITE_URL}/#author` },
+    },
+    AUTHOR_LD,
+    {
+      '@type': 'Course',
+      '@id': `${SITE_URL}/#course`,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      inLanguage: 'en',
+      isAccessibleForFree: true,
+      educationalLevel: 'Beginner',
+      teaches: [
+        'What local AI is and how it differs from ChatGPT',
+        'Installing Jan on Windows or Mac',
+        'Keeping AI data off the system drive',
+        'Running a small language model offline',
+        'What a local AI app sends over the internet',
+      ],
+      provider: { '@id': `${SITE_URL}/#author` },
+      author: { '@id': `${SITE_URL}/#author` },
+      hasCourseInstance: {
+        '@type': 'CourseInstance',
+        courseMode: 'online',
+        courseWorkload: 'PT1H',
+      },
+      offers: { '@type': 'Offer', price: 0, priceCurrency: 'INR', category: 'Free' },
+      hasPart: CHAPTERS.map((chapter) => ({
+        '@type': 'LearningResource',
+        name: chapter.title,
+        url: absolute(`/workshop/${chapter.slug}`),
+        timeRequired: `PT${chapter.minutes}M`,
+      })),
+    },
+  ],
+}
 
 const TOPICS = ['No code', 'Windows', 'macOS', 'Offline', 'Qwen3.5-2B', 'Privacy']
 
@@ -121,70 +186,76 @@ function SectionTitle({
 export default function Home() {
   return (
     <div className="flex flex-col gap-24 pb-24">
+      <JsonLd data={SITE_LD} />
       <section className="mx-auto w-full max-w-6xl px-3 pt-4 sm:px-4">
-        <div className="relative overflow-hidden rounded-[28px] bg-sky px-5 pt-12 pb-24 text-white sm:px-10 sm:pt-16 sm:pb-28">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
-            <div className="flex min-w-0 flex-col gap-6">
-              <p className="w-fit rounded-full bg-white/15 px-3 py-1 font-mono text-[12px] tracking-wider uppercase">
-                Free hands-on workshop · about an hour
-              </p>
-              <h1 className="font-display text-[3.2rem] leading-[0.98] text-balance sm:text-[4.6rem]">
-                Your own private ChatGPT.
-              </h1>
-              <p className="max-w-xl text-[18px] leading-relaxed text-white/95">
-                Run a ChatGPT-style AI on your own laptop. No subscription, no API key, no account.
-                Keep its chats on a drive you chose, switch the internet off and keep chatting.
-              </p>
-              <ul className="flex flex-wrap gap-2" aria-label="Topics">
-                {TOPICS.map((topic) => (
-                  <li
-                    key={topic}
-                    className="rounded-full border border-white/40 px-3 py-1 text-[13px] font-medium"
-                  >
-                    {topic}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-4 pt-2">
-                <Link href="/follow-along" className="btn btn-mint">
-                  Follow along, step by step
-                </Link>
-                <a href="#laptop" className="btn btn-white">
-                  Will my laptop run it?
-                </a>
+        <TiltCard max={2.5} perspective={2400} radius="28px">
+          <div className="relative overflow-hidden rounded-[28px] bg-sky px-5 pt-12 pb-24 text-white sm:px-10 sm:pt-16 sm:pb-28">
+            <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
+              <div className="flex min-w-0 flex-col gap-6">
+                <p className="w-fit rounded-full bg-white/15 px-3 py-1 font-mono text-[12px] tracking-wider uppercase">
+                  Free hands-on workshop · about an hour
+                </p>
+                <h1 className="font-display text-[3.2rem] leading-[0.98] text-balance sm:text-[4.6rem]">
+                  Your own private ChatGPT.
+                </h1>
+                <p className="max-w-xl text-[18px] leading-relaxed text-white/95">
+                  Run a ChatGPT-style AI on your own laptop. No subscription, no API key, no
+                  account. Keep its chats on a drive you chose, switch the internet off and keep
+                  chatting.
+                </p>
+                <ul className="flex flex-wrap gap-2" aria-label="Topics">
+                  {TOPICS.map((topic) => (
+                    <li
+                      key={topic}
+                      className="rounded-full border border-white/40 px-3 py-1 text-[13px] font-medium"
+                    >
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <Link href="/follow-along" className="btn btn-mint">
+                    Follow along, step by step
+                  </Link>
+                  <a href="#laptop" className="btn btn-white">
+                    Will my laptop run it?
+                  </a>
+                </div>
               </div>
-            </div>
 
-            <figure className="window min-w-0 text-ink">
-              <figcaption className="flex items-center justify-between gap-3 border-b-2 border-ink px-4 py-2.5 font-mono text-[12px]">
-                <span className="flex items-center gap-1.5" aria-hidden="true">
-                  <span className="size-2.5 rounded-full bg-[#ff6b6b]" />
-                  <span className="size-2.5 rounded-full bg-sun" />
-                  <span className="size-2.5 rounded-full bg-mint" />
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Icon name="plane" size={16} />
-                  Airplane mode on · Qwen3.5-2B
-                </span>
-                <span className="text-muted">illustration</span>
-              </figcaption>
-              <div className="flex flex-col gap-3 px-4 py-5 text-[14.5px] leading-relaxed">
-                <p className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-accent px-3.5 py-2 text-white">
-                  Explain compound interest with an example in rupees.
-                </p>
-                <p className="max-w-[92%] rounded-2xl rounded-bl-md bg-canvas px-3.5 py-2">
-                  Put ₹10,000 in at 8% a year. After one year you have ₹10,800. In year two you earn
-                  8% on ₹10,800, not on ₹10,000, so you end at ₹11,664. Interest earning interest:
-                  that is compounding.
-                </p>
-                <p className="font-mono text-[12px] text-muted">
-                  No internet. Answered on this laptop. Saved on the drive you chose.
-                </p>
-              </div>
-            </figure>
+              <TiltCard className="min-w-0">
+                <figure className="window text-ink">
+                  <figcaption className="flex items-center justify-between gap-3 border-b-2 border-ink px-4 py-2.5 font-mono text-[12px]">
+                    <span className="flex items-center gap-1.5" aria-hidden="true">
+                      <span className="size-2.5 rounded-full bg-[#ff6b6b]" />
+                      <span className="size-2.5 rounded-full bg-sun" />
+                      <span className="size-2.5 rounded-full bg-mint" />
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <Icon name="plane" size={16} />
+                      Airplane mode on · Qwen3.5-2B
+                    </span>
+                    <span className="text-muted">illustration</span>
+                  </figcaption>
+                  <div className="flex flex-col gap-3 px-4 py-5 text-[14.5px] leading-relaxed">
+                    <p className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-accent px-3.5 py-2 text-white">
+                      Explain compound interest with an example in rupees.
+                    </p>
+                    <p className="max-w-[92%] rounded-2xl rounded-bl-md bg-canvas px-3.5 py-2">
+                      Put ₹10,000 in at 8% a year. After one year you have ₹10,800. In year two you
+                      earn 8% on ₹10,800, not on ₹10,000, so you end at ₹11,664. Interest earning
+                      interest: that is compounding.
+                    </p>
+                    <p className="font-mono text-[12px] text-muted">
+                      No internet. Answered on this laptop. Saved on the drive you chose.
+                    </p>
+                  </div>
+                </figure>
+              </TiltCard>
+            </div>
+            <Clouds />
           </div>
-          <Clouds />
-        </div>
+        </TiltCard>
       </section>
 
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-28 px-4">
@@ -297,6 +368,13 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section aria-labelledby="faq" className="flex flex-col gap-6">
+          <SectionTitle id="faq" kicker="Before you start">
+            Questions people <em>ask first</em>
+          </SectionTitle>
+          <Faq />
         </section>
 
         <section aria-labelledby="chapters" className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
