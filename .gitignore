@@ -1,0 +1,21 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example
+.vercel
+.DS_Store
+
+# Raw recordings stay on a non-system drive, never in the repo. Only compressed snips go in docs/shots/.
+*.mp4
+*.mkv
+*.mov
+*.gguf
+
+# Local notes, not part of the workshop.
+docs/video/
