@@ -2,17 +2,20 @@
 
 import { useState } from 'react'
 
+import { Icon, type IconName } from './Icons'
+
 type Side = 'cloud' | 'local'
 
 const SIDES = {
   cloud: {
-    tab: '☁️ Cloud AI',
+    tab: 'Cloud AI',
+    icon: 'cloud' as IconName,
     tag: 'ChatGPT, Gemini, Claude',
     line: 'Your message travels over the internet to the AI company’s computers. The answer travels back.',
     path: [
-      ['💻', 'Your laptop'],
-      ['🌐', 'The internet'],
-      ['🏢', 'A data centre'],
+      ['laptop', 'Your laptop'],
+      ['globe', 'The internet'],
+      ['server', 'A data centre'],
     ],
     rows: [
       ['Where the thinking happens', 'in a data centre'],
@@ -23,12 +26,13 @@ const SIDES = {
     ],
   },
   local: {
-    tab: '🏠 Local AI',
+    tab: 'Local AI',
+    icon: 'house' as IconName,
     tag: 'Jan + one model file on your laptop',
     line: 'The model is a file on your drive. Jan loads it into your memory, and your own processor writes the answer.',
     path: [
-      ['💻', 'Your laptop'],
-      ['🧠', 'Model in your RAM'],
+      ['laptop', 'Your laptop'],
+      ['ram', 'Model in your RAM'],
     ],
     rows: [
       ['Where the thinking happens', 'on your laptop'],
@@ -60,7 +64,10 @@ export function CloudOrLocal() {
               side === key ? 'bg-sun' : 'bg-surface text-ink-2 hover:bg-canvas'
             }`}
           >
-            {SIDES[key].tab}
+            <span className="inline-flex items-center justify-center gap-2">
+              <Icon name={SIDES[key].icon} size={24} />
+              {SIDES[key].tab}
+            </span>
           </button>
         ))}
       </div>
@@ -78,7 +85,7 @@ export function CloudOrLocal() {
         </div>
 
         <div className="flow" key={side} aria-hidden="true">
-          {current.path.map(([emoji, label], index) => (
+          {current.path.map(([icon, label], index) => (
             <div key={label} className="contents">
               {index > 0 && (
                 <span className={`flow-wire ${side === 'cloud' ? 'is-far' : ''}`}>
@@ -86,7 +93,7 @@ export function CloudOrLocal() {
                 </span>
               )}
               <span className="flow-node">
-                <span className="text-[28px]">{emoji}</span>
+                <Icon name={icon as IconName} size={36} />
                 <span className="text-[12.5px] font-semibold">{label}</span>
               </span>
             </div>

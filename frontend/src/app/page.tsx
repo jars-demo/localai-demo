@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { CloudOrLocal } from '@/components/CloudOrLocal'
+import { Icon, IconTile, type IconName, type Tone } from '@/components/Icons'
 import { LaptopPicker } from '@/components/LaptopPicker'
 import { ModelExplainer } from '@/components/ModelExplainer'
 import { REPO_URL } from '@/components/Shell'
@@ -20,13 +21,55 @@ const JOURNEY = [
   ['04', 'Chat with the internet off', 'Airplane mode on. It still answers.'],
 ]
 
-const SCENARIOS = [
-  ['🎒', 'Student', 'Quiz yourself on a chapter the night before, with no data pack.'],
-  ['💼', 'Job hunter', 'Practise interview questions without sharing your CV with a company.'],
-  ['✉️', 'Office worker', 'Rewrite a touchy email without pasting it into a cloud tool.'],
-  ['🛍️', 'Small business', 'Draft offers and replies on the shop laptop, free, every day.'],
-  ['🧑‍💻', 'Developer', 'Explain an error, or build on a local API with no key.'],
-  ['🏫', 'Workshop room', 'Fifty laptops, bad Wi-Fi, one model on a pen drive.'],
+const SCENARIOS: {
+  icon: IconName
+  tone: Tone
+  who: string
+  what: string
+  tryThis: string
+}[] = [
+  {
+    icon: 'book',
+    tone: 'sun',
+    who: 'Student',
+    what: 'Quiz yourself on a chapter the night before, with no data pack.',
+    tryThis: 'Quiz me with 5 questions on photosynthesis.',
+  },
+  {
+    icon: 'briefcase',
+    tone: 'sky',
+    who: 'Job hunter',
+    what: 'Practise interview questions without sharing your CV with a company.',
+    tryThis: 'Give me 5 likely questions for a data analyst internship.',
+  },
+  {
+    icon: 'envelope',
+    tone: 'rose',
+    who: 'Office worker',
+    what: 'Rewrite a touchy email without pasting it into a cloud tool.',
+    tryThis: 'Rewrite this email to sound polite but firm.',
+  },
+  {
+    icon: 'shop',
+    tone: 'mint',
+    who: 'Small business',
+    what: 'Draft offers and replies on the shop laptop, free, every day.',
+    tryThis: 'Write a WhatsApp message for our Diwali offer, under 50 words.',
+  },
+  {
+    icon: 'code',
+    tone: 'stone',
+    who: 'Developer',
+    what: 'Explain an error, or build on a local API with no key.',
+    tryThis: 'Explain this error and suggest a fix.',
+  },
+  {
+    icon: 'usb',
+    tone: 'sky',
+    who: 'Workshop room',
+    what: 'Fifty laptops, bad Wi-Fi, one model on a pen drive.',
+    tryThis: 'One download, copied to every laptop.',
+  },
 ]
 
 function Clouds() {
@@ -119,7 +162,10 @@ export default function Home() {
                   <span className="size-2.5 rounded-full bg-sun" />
                   <span className="size-2.5 rounded-full bg-mint" />
                 </span>
-                <span>✈ Airplane mode on · Qwen3.5-2B</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Icon name="plane" size={16} />
+                  Airplane mode on · Qwen3.5-2B
+                </span>
                 <span className="text-muted">illustration</span>
               </figcaption>
               <div className="flex flex-col gap-3 px-4 py-5 text-[14.5px] leading-relaxed">
@@ -240,13 +286,14 @@ export default function Home() {
             Where a small local model <em>helps</em>
           </SectionTitle>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {SCENARIOS.map(([emoji, who, what]) => (
-              <div key={who} className="card flex flex-col gap-2 p-5">
-                <span className="text-[26px]" aria-hidden="true">
-                  {emoji}
+            {SCENARIOS.map((scenario) => (
+              <div key={scenario.who} className="card flex flex-col gap-3 p-5">
+                <IconTile name={scenario.icon} tone={scenario.tone} />
+                <span className="pt-1 text-[16px] font-bold">{scenario.who}</span>
+                <span className="text-[14.5px] text-ink-2">{scenario.what}</span>
+                <span className="mt-auto w-fit max-w-full rounded-2xl rounded-bl-md bg-canvas px-3 py-2 font-mono text-[12px] leading-snug text-ink-2">
+                  {scenario.tryThis}
                 </span>
-                <span className="text-[16px] font-bold">{who}</span>
-                <span className="text-[14.5px] text-ink-2">{what}</span>
               </div>
             ))}
           </div>

@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { createStore, dataPath, hasDataDrive, useSetup } from '@/lib/setup'
 import { stepsFor, type Step } from '@/lib/steps'
 
+import { Icon, IconTile } from './Icons'
 import { CodeChip, Rich } from './Rich'
 import { SetupPicker } from './SetupPicker'
 
@@ -91,9 +92,11 @@ function StepCard({
             </ul>
           </div>
           {step.note && (
-            <p className="rounded-xl bg-[#fff5d6] px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-2">
-              <span aria-hidden="true">💡 </span>
-              <Rich text={step.note} />
+            <p className="flex gap-2.5 rounded-xl bg-[#fff5d6] px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-2">
+              <Icon name="bulb" size={22} className="mt-0.5 shrink-0" />
+              <span>
+                <Rich text={step.note} />
+              </span>
             </p>
           )}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px]">
@@ -225,8 +228,8 @@ export function FollowAlong() {
             aria-label="Finished"
             className="window flex flex-col gap-3 bg-mint p-6 text-center sm:p-8"
           >
-            <span className="text-[44px]" aria-hidden="true">
-              🎉
+            <span className="mx-auto">
+              <IconTile name="trophy" tone="sun" size={72} />
             </span>
             <h2 className="font-display text-[2.4rem] leading-tight">You run your own AI now.</h2>
             <p className="mx-auto max-w-lg text-[15.5px] leading-relaxed text-ink-2">

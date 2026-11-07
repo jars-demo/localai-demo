@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 
+import { IconTile, type IconName, type Tone } from './Icons'
+
 // "What a model is" for beginners. Sizes are from Hugging Face (docs/research/model-recommendations.md);
 // who can run what follows the laptop picker (src/lib/picker.ts).
 
@@ -29,20 +31,23 @@ const MODELS = [
   },
 ] as const
 
-const PIPELINE = [
-  ['📁', 'A file on your drive', 'The model is one .gguf file in your data folder.'],
+const PIPELINE: [IconName, Tone, string, string][] = [
+  ['file', 'sky', 'A file on your drive', 'The model is one .gguf file in your data folder.'],
   [
-    '🧠',
+    'ram',
+    'mint',
     'Loaded into memory',
     'When you chat, Jan copies it into RAM, or into graphics memory if you have a GPU.',
   ],
   [
-    '⚙️',
+    'chip',
+    'sun',
     'Your chip does the maths',
     'The CPU or GPU predicts the next small piece of a word, again and again.',
   ],
   [
-    '💬',
+    'chat',
+    'stone',
     'Words appear one by one',
     'That is why answers stream in, and why a faster laptop writes faster.',
   ],
@@ -55,12 +60,12 @@ export function ModelExplainer() {
   return (
     <div className="grid gap-6">
       <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {PIPELINE.map(([emoji, title, body], index) => (
+        {PIPELINE.map(([icon, tone, title, body], index) => (
           <li key={title} className="card relative flex flex-col gap-2 p-5">
-            <span className="font-mono text-[12px] text-muted">{index + 1}</span>
-            <span className="text-[28px]" aria-hidden="true">
-              {emoji}
-            </span>
+            <div className="flex items-start justify-between">
+              <IconTile name={icon} tone={tone} />
+              <span className="font-mono text-[12px] text-muted">{index + 1} / 4</span>
+            </div>
             <span className="text-[16px] font-bold">{title}</span>
             <span className="text-[14px] leading-relaxed text-ink-2">{body}</span>
           </li>

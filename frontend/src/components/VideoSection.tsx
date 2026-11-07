@@ -5,6 +5,8 @@ import { useState } from 'react'
 
 import { VIDEO } from '@/lib/video'
 
+import { Icon } from './Icons'
+
 const COVERS = [
   'ChatGPT vs local AI',
   'What a model is',
@@ -51,7 +53,7 @@ function Player({ id }: { id: string }) {
       className="video-poster group absolute inset-0 flex flex-col items-center justify-center gap-4 text-white"
     >
       <span className="play-button" aria-hidden="true">
-        ▶
+        <Icon name="play" size={34} />
       </span>
       <span className="text-[17px] font-semibold">Play the video</span>
       <span className="text-[12.5px] text-white/80">Loads from YouTube when you press play</span>
@@ -94,7 +96,7 @@ export function VideoSection() {
         ) : (
           <div className="video-poster absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center text-white">
             <span className="play-button is-waiting" aria-hidden="true">
-              ▶
+              <Icon name="play" size={34} />
             </span>
             <span className="font-display text-[2rem] leading-none sm:text-[2.6rem]">
               Coming soon
