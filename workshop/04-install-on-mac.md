@@ -28,7 +28,7 @@ Only download from jan.ai or [Jan's GitHub releases](https://github.com/janhq/ja
 
 Jan shows **"Jan needs to set up on your system"**. Click **Let's start**.
 
-1. **Help improve Jan.** Anonymous usage statistics, off by default. Click **Skip for now** to keep them off.
+1. **Help improve Jan.** Anonymous usage statistics, off by default. Click **Deny** to keep them off.
 2. **Setting up the local engine.** Jan downloads the engine and a small model for file search. On Apple Silicon it uses the Mac's graphics (Metal) automatically.
 3. Wait for **"Engine ready"**.
 4. If it offers a first model, **wait** until you have decided on the data folder.
@@ -46,7 +46,7 @@ If you choose the external SSD:
 
 1. Plug it in and create the folder in Finder, for example `/Volumes/MySSD/Jan`.
 2. In Jan: **Settings → General → App Data → Change Location** → pick that folder → confirm.
-3. Jan copies the data there and restarts.
+3. Jan copies the data there and restarts. It may show its setup screen again. That is normal: go through it once more.
 4. From now on, plug the SSD in **before** opening Jan.
 
 Jan refuses a drive's top level and system folders, so always pick a folder inside the drive.

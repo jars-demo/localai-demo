@@ -30,7 +30,7 @@ The app itself installs into your user folder on C:. The installer does not ask 
 
 Jan shows **"Jan needs to set up on your system"**. Click **Let's start**.
 
-1. **Help improve Jan.** This asks whether to share anonymous usage statistics (not your chats). Analytics are off by default. Click **Skip for now** to keep them off.
+1. **Help improve Jan.** This asks whether to share anonymous usage statistics (not your chats). Analytics are off by default. Click **Deny** to keep them off.
 2. **Setting up the local engine.** Jan downloads the engine that runs models, plus a small model for file search. This needs internet and takes a few minutes.
 3. A badge shows **"Will use your GPU"** or **"Will run on CPU"**. Both are fine.
 4. Wait for **"Engine ready"**.
@@ -44,6 +44,7 @@ By default Jan keeps everything in `C:\Users\<you>\AppData\Roaming\Jan\data`. Mo
 2. In Jan, open **Settings → General**. Find **App Data** ("Location for messages, downloaded models and other data").
 3. Click **Change Location** and choose `X:\Jan`.
 4. Confirm. Jan stops, **copies** the current data into `X:\Jan`, and restarts.
+5. Jan may show its setup screen again after the restart. That is normal. Go through it once more, and click **Deny** again on "Help improve Jan".
 
 Rules Jan enforces:
 

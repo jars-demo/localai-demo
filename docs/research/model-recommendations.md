@@ -18,6 +18,8 @@ Research date: 2026-11-07. All file sizes come from the Hugging Face API (`/api/
 |---|---|
 | Repo | https://huggingface.co/unsloth/Qwen3.5-2B-GGUF (base: https://huggingface.co/Qwen/Qwen3.5-2B) |
 | File | `Qwen3.5-2B-Q4_K_M.gguf`, **1.28 GB** |
+| Vision file | `mmproj-F16.gguf`, **0.67 GB** (668,227,264 bytes, https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/tree/main). FACT from the Windows recording: Jan downloads it with the model and lists the model as 1.2 GB, so the download is about 2 GB in total. |
+| Hub copies | Several Qwen3.5-2B copies are listed. Use `unsloth/Qwen3.5-2B-GGUF`; skip "Uncensored" copies. |
 | Licence | Apache-2.0 |
 | RAM (est.) | ~2.5–3.5 GB |
 | GPU VRAM | Not needed |

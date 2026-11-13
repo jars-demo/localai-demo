@@ -27,12 +27,12 @@ Source: [unsloth/Qwen3.5-2B-GGUF on Hugging Face](https://huggingface.co/unsloth
 ## Download it
 
 1. In Jan, open **Hub** in the left sidebar. (If the setup screen suggests a different model, choose **Browse other models in the Hub**.)
-2. Search for `Qwen3.5-2B`.
+2. Search for `Qwen3.5-2B`. The Hub lists several copies. Pick the one by **Unsloth** (`unsloth/Qwen3.5-2B-GGUF`). Skip copies with "Uncensored" in the name.
 3. Open it. Jan shows a label for your laptop:
    - **Fits**: go ahead.
    - **May be slow**: it works, slowly.
    - **Won't fit**: something is wrong for a 1.28 GB model. Close other apps and check chapter 02.
-4. Choose the **Q4_K_M** version and click **Download**.
+4. Choose the **Q4_K_M** version and click **Download**. Jan's list may round the size to 1.2 GB. Jan also downloads a small vision file (`mmproj`, about 0.67 GB), so expect about 2 GB in total.
 5. Watch the progress in the top bar. The **×** cancels. If it fails, click **Download** again.
 
 The file comes from huggingface.co. This is one of the moments Jan uses the internet.

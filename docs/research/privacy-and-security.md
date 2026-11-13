@@ -40,7 +40,7 @@ The location can be changed in **Settings > General > Jan Data Folder**.
 ### 4. Does the application collect telemetry?
 **FACT: Opt-in only, off by default.**
 - Default: `productAnalytic: false` (https://github.com/janhq/jan/blob/v0.8.8/web-app/src/hooks/useAnalytic.ts)
-- A first-launch consent step called **"Help improve Jan"** has a **"Skip for now"** option (https://github.com/janhq/jan/blob/v0.8.8/web-app/src/locales/en/setup.json)
+- A first-launch consent step called **"Help improve Jan"** has a **"Skip for now"** option (https://github.com/janhq/jan/blob/v0.8.8/web-app/src/locales/en/setup.json) and **Allow** / **Deny** buttons (https://github.com/janhq/jan/blob/v0.8.8/web-app/src/locales/en/common.json). FACT: the Windows recording showed **Deny**, so the chapters say Deny.
 - Provider: PostHog, EU-hosted. If you opt in, it collects active users and retention, tied to a random ID (https://docs.jan.ai/desktop/privacy)
 - Change it any time: **Settings > Privacy → Analytics / "Help us improve"** (strings: https://github.com/janhq/jan/blob/v0.8.8/web-app/src/locales/en/settings.json)
 
@@ -92,7 +92,7 @@ Three tests, from easiest to most rigorous:
 
 ## Practical privacy demonstration (for the video)
 
-1. With internet ON: install Jan, complete setup, choose **Skip for now** on analytics, move the data folder to `X:\Jan` (Settings → General → App Data → Change Location), then download Qwen3.5-2B (Q4_K_M) and set Reasoning to Off.
+1. With internet ON: install Jan, complete setup, choose **Deny** on analytics, move the data folder to `X:\Jan` (Settings → General → App Data → Change Location), then download Qwen3.5-2B (Q4_K_M) and set Reasoning to Off.
 2. Open **Settings > General**, show **Automatic Update Check**, and explain it.
 3. **Turn on Airplane mode** (Action Center → Airplane mode, which also kills Ethernet if you use a dongle; or unplug the cable). Show the Wi-Fi icon disconnected.
 4. Optional extra proof: open a browser tab and show it failing to load.

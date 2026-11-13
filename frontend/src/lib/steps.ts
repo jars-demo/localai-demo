@@ -106,7 +106,7 @@ export function stepsFor(setup: Setup): Step[] {
     chapter: install,
     doThis: [
       'Keep the internet **on**. Click **Let’s start**.',
-      '“Help improve Jan”: click **Skip for now** to keep analytics off.',
+      '“Help improve Jan”: click **Deny** to keep analytics off.',
       `Jan downloads its engine. A badge says **“Will use your GPU”** or **“Will run on CPU”**. Both are fine.`,
       'Wait for **“Engine ready”**. If it offers a model, **do not download it yet**.',
     ],
@@ -123,6 +123,7 @@ export function stepsFor(setup: Setup): Step[] {
         'In Jan: **Settings → General**. Find **App Data**.',
         `Click **Change Location** and pick \`${data}\`.`,
         'Confirm. Jan **copies** everything there and restarts.',
+        'Setup screen again? That is normal. Go through it once more.',
       ],
       see: [
         `**App Data** shows \`${data}\`.`,
@@ -160,8 +161,8 @@ export function stepsFor(setup: Setup): Step[] {
     chapter: '05-your-first-model',
     doThis: [
       'Open **Hub** in the left sidebar. Setup suggested another model? Choose **Browse other models in the Hub**.',
-      'Search `Qwen3.5-2B`. Your laptop’s label should say **Fits**.',
-      'Choose **Q4_K_M** (1.28 GB) and click **Download**. This part uses the internet: the file comes from huggingface.co.',
+      'Search `Qwen3.5-2B` and pick the copy by **Unsloth**. Skip any named “Uncensored”. Your laptop’s label should say **Fits**.',
+      'Choose **Q4_K_M** (1.28 GB, Jan may show 1.2 GB) and click **Download**. Jan also fetches a small vision file, so expect about 2 GB in total. This part uses the internet: the files come from huggingface.co.',
     ],
     see: [
       'Qwen3.5-2B appears in the model picker of a new chat.',

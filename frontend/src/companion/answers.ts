@@ -59,6 +59,6 @@ export const DOT_ANSWERS: readonly CompanionAnswer[] = [
   {
     question: 'Is there a video?',
     answer:
-      'The walk-through video is coming soon. Until then, the follow-along page has every step, and it matches the video.',
+      'Yes. It is on the home page and on YouTube (youtu.be/w8i5U98H_yk). The follow-along page has every step, and it matches the video.',
   },
 ]

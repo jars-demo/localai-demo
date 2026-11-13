@@ -2,6 +2,6 @@
 // When it is live, paste the YouTube video id (the part after watch?v=).
 
 export const VIDEO = {
-  id: '',
+  id: 'w8i5U98H_yk',
   title: 'Your own private ChatGPT: ChatGPT vs local AI, then set up your own',
 }
