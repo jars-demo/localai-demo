@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { type CompanionAnswer, DOT_ANSWERS, DOT_GREETING } from '@/companion/answers'
+import { VIDEO } from '@/lib/video'
 
 import { Icon } from './Icons'
 import { Mark } from './Mark'
@@ -107,6 +108,23 @@ export function SiteCompanion() {
             Ready-made answers. Nothing you ask is sent anywhere.
           </p>
         </div>
+      )}
+      {VIDEO.id && !open && (
+        <a
+          href={`https://youtu.be/${VIDEO.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Watch the video here (YouTube, opens in a new tab)"
+          className="group absolute bottom-full left-[5px] mb-3 grid size-[42px] place-items-center rounded-full border-2 border-ink bg-surface shadow-[3px_3px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
+        >
+          <Icon name="youtube" size={28} />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute top-1/2 left-full ml-3 -translate-y-1/2 rounded-full border-2 border-ink bg-sun px-3 py-1 text-[13px] font-semibold whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+          >
+            Watch the video here
+          </span>
+        </a>
       )}
       <button
         ref={button}
