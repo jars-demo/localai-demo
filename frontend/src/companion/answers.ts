@@ -1,4 +1,5 @@
-export type CompanionAnswer = { question: string; answer: string }
+export type CompanionLink = { href: string; label: string; tooltip: string }
+export type CompanionAnswer = { question: string; answer: string; link?: CompanionLink }
 
 // What Dot can answer. Fixed answers only, so it never makes anything up.
 // Every answer comes from the chapters; change them together. Plain English, no em dashes.
@@ -59,6 +60,11 @@ export const DOT_ANSWERS: readonly CompanionAnswer[] = [
   {
     question: 'Is there a video?',
     answer:
-      'Yes. It is on the home page and on YouTube (youtu.be/w8i5U98H_yk). The follow-along page has every step, and it matches the video.',
+      'Yes. It is on the home page and on YouTube. The follow-along page has every step, and it matches the video.',
+    link: {
+      href: 'https://youtu.be/w8i5U98H_yk',
+      label: 'Watch the video here',
+      tooltip: 'Watch the video on YouTube (opens in a new tab)',
+    },
   },
 ]

@@ -175,6 +175,12 @@ const DRAWINGS = {
     />
   ),
   play: <path d="M14 9.5v21l17-10.5Z" fill={INK} {...line} />,
+  youtube: (
+    <>
+      <rect x="4" y="9" width="32" height="22" rx="7" fill="#ff4e45" {...line} />
+      <path d="M17 14.5v11l9-5.5Z" fill={WHITE} {...line} />
+    </>
+  ),
 } satisfies Record<string, ReactNode>
 
 export type IconName = keyof typeof DRAWINGS

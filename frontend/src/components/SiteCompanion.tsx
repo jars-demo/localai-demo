@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-import { DOT_ANSWERS, DOT_GREETING } from '@/companion/answers'
+import { type CompanionAnswer, DOT_ANSWERS, DOT_GREETING } from '@/companion/answers'
 
+import { Icon } from './Icons'
 import { Mark } from './Mark'
 
 // Dot, the help companion: the site's logo in the bottom-left corner. Tap it for quick answers.
@@ -11,7 +12,7 @@ import { Mark } from './Mark'
 
 export function SiteCompanion() {
   const [open, setOpen] = useState(false)
-  const [answer, setAnswer] = useState<string | null>(null)
+  const [answer, setAnswer] = useState<CompanionAnswer | null>(null)
   const button = useRef<HTMLButtonElement>(null)
   const panel = useRef<HTMLDivElement>(null)
 
@@ -66,21 +67,33 @@ export function SiteCompanion() {
             </button>
           </div>
           {answer && (
-            <p
+            <div
               aria-live="polite"
-              className="rounded-2xl border-2 border-ink bg-accent-wash p-3 text-[14px] leading-relaxed text-ink"
+              className="flex flex-col gap-2.5 rounded-2xl border-2 border-ink bg-accent-wash p-3 text-[14px] leading-relaxed text-ink"
             >
-              {answer}
-            </p>
+              <p>{answer.answer}</p>
+              {answer.link && (
+                <a
+                  href={answer.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={answer.link.tooltip}
+                  className="flex w-fit items-center gap-2 rounded-full border-2 border-ink bg-surface py-1 pr-3.5 pl-1.5 text-[13px] font-semibold shadow-[2px_2px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
+                >
+                  <Icon name="youtube" size={26} />
+                  {answer.link.label}
+                </a>
+              )}
+            </div>
           )}
           <ul className="flex flex-wrap gap-1.5">
             {DOT_ANSWERS.map((item) => (
               <li key={item.question}>
                 <button
                   type="button"
-                  onClick={() => setAnswer(item.answer)}
+                  onClick={() => setAnswer(item)}
                   className={`rounded-full border px-3 py-1.5 text-left text-[13px] transition-colors ${
-                    answer === item.answer
+                    answer === item
                       ? 'border-ink bg-mint font-semibold'
                       : 'border-line-strong bg-surface hover:border-ink'
                   }`}
@@ -91,7 +104,7 @@ export function SiteCompanion() {
             ))}
           </ul>
           <p className="text-[11.5px] text-muted">
-            Ready-made answers. Nothing you click is sent anywhere.
+            Ready-made answers. Nothing you ask is sent anywhere.
           </p>
         </div>
       )}
