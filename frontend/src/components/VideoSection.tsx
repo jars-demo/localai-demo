@@ -50,13 +50,24 @@ function Player({ id }: { id: string }) {
     <button
       type="button"
       onClick={() => setPlaying(true)}
-      className="video-poster group absolute inset-0 flex flex-col items-center justify-center gap-4 text-white"
+      aria-label="Play the video. Loads from YouTube when you press play."
+      className="group absolute inset-0 flex items-center justify-center"
     >
-      <span className="play-button" aria-hidden="true">
+      {/* Local copy of the YouTube thumbnail, so nothing loads from YouTube before play. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/video-thumbnail.jpg"
+        alt=""
+        width={1280}
+        height={720}
+        className="absolute inset-0 size-full object-cover"
+      />
+      <span className="play-button relative" aria-hidden="true">
         <Icon name="play" size={34} />
       </span>
-      <span className="text-[17px] font-semibold">Play the video</span>
-      <span className="text-[12.5px] text-white/80">Loads from YouTube when you press play</span>
+      <span className="absolute bottom-3 left-3 rounded-full bg-ink/80 px-3 py-1 text-[12px] text-white">
+        Loads from YouTube when you press play
+      </span>
     </button>
   )
 }
