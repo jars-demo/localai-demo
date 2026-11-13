@@ -35,7 +35,7 @@ export const DOT_ANSWERS: readonly CompanionAnswer[] = [
   {
     question: 'Which model do I download?',
     answer:
-      'In Jan’s Hub, search Qwen3.5-2B and pick the Q4_K_M version, 1.28 GB. Its label should say Fits.',
+      'In Jan’s Hub, search unsloth/Qwen3.5-2B-GGUF (the exact name, or it may not show up). Pick the Q4_K_M version, 1.28 GB. Skip “Uncensored” copies. Its label should say Fits.',
   },
   {
     question: 'It’s really slow',

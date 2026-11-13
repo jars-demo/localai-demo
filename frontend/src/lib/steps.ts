@@ -161,7 +161,7 @@ export function stepsFor(setup: Setup): Step[] {
     chapter: '05-your-first-model',
     doThis: [
       'Open **Hub** in the left sidebar. Setup suggested another model? Choose **Browse other models in the Hub**.',
-      'Search `Qwen3.5-2B` and pick the copy by **Unsloth**. Skip any named “Uncensored”. Your laptop’s label should say **Fits**.',
+      'Search the exact name `unsloth/Qwen3.5-2B-GGUF` (a plain `Qwen3.5-2B` search may not show it). Skip any copy named “Uncensored”. Your laptop’s label should say **Fits**.',
       'Choose **Q4_K_M** (1.28 GB, Jan may show 1.2 GB) and click **Download**. Jan also fetches a small vision file, so expect about 2 GB in total. This part uses the internet: the files come from huggingface.co.',
     ],
     see: [

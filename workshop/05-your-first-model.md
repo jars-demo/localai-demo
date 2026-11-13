@@ -27,7 +27,7 @@ Source: [unsloth/Qwen3.5-2B-GGUF on Hugging Face](https://huggingface.co/unsloth
 ## Download it
 
 1. In Jan, open **Hub** in the left sidebar. (If the setup screen suggests a different model, choose **Browse other models in the Hub**.)
-2. Search for `Qwen3.5-2B`. The Hub lists several copies. Pick the one by **Unsloth** (`unsloth/Qwen3.5-2B-GGUF`). Skip copies with "Uncensored" in the name.
+2. Search for the exact name `unsloth/Qwen3.5-2B-GGUF`. A plain `Qwen3.5-2B` search lists several copies and may not show this one. Pick the copy by **Unsloth**. Skip copies with "Uncensored" in the name.
 3. Open it. Jan shows a label for your laptop:
    - **Fits**: go ahead.
    - **May be slow**: it works, slowly.
